@@ -4,38 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthcare Chatbot</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        #chatbox { width: 80%; max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 20px; }
-        #messages { height: 300px; overflow-y: auto; margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; }
-        input, button { padding: 10px; margin: 5px; width: 80%; }
-    </style>
+    
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
 </head>
 <body>
-    <h2>Healthcare Assistant Bot</h2>
-    <div id="chatbox">
-        <div id="messages"></div>
-        <input type="text" id="userInput" placeholder="Ask me anything...">
-        <button onclick="sendMessage()">Send</button>
+
+    <!-- Animated Particles Background -->
+    <div class="particles">
+        <div></div><div></div><div></div><div></div><div></div>
     </div>
 
-    <script>
-        async function sendMessage() {
-            const userInput = document.getElementById("userInput").value;
-            if (!userInput) return;
+    <!-- Chatbot Title -->
+    <h2>Healthcare Virtual Assistant</h2>
 
-            document.getElementById("messages").innerHTML += `<p><b>You:</b> ${userInput}</p>`;
-            document.getElementById("userInput").value = "";
+    <!-- Chatbox -->
+    <div id="chatbox">
+        <div id="messages">
+            <img id="chatGif" src="images/Animation - 1740068817891.gif" alt="Chat Animation" class="chat-gif">
+        </div>
+        <input type="text" id="userInput" placeholder="Ask me anything...">
+        <button id="sendButton">Send</button>  <!-- FIXED: Added ID -->
+    </div>
 
-            const response = await fetch("https://healthcare-chatbot-69ix.onrender.com/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: userInput })
-            });
+    <!-- JavaScript -->
+    
 
-            const data = await response.json();
-            document.getElementById("messages").innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
-        }
-    </script>
 </body>
 </html>
