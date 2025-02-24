@@ -223,8 +223,8 @@ h2 {
 }
 
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        #chatbox { width: 80%; max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 20px; }
-        #messages { height: 300px; overflow-y: auto; margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; }
+        #chatbox { width: 80%; max-width: 500px; margin: auto; border: 1px solid paleturquoise; padding: 20px; }
+        #messages { height: 300px; overflow-y: auto; margin-bottom: 10px; border: 1px solid paleturquoise; padding: 10px; }
         input, button { padding: 10px; margin: 5px; width: 80%; }
         .chat-gif {
             display: block; /* Show the GIF initially */
