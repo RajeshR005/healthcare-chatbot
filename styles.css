@@ -140,7 +140,7 @@ body {
 
 .bot-message {
     background: linear-gradient(135deg, #eeeeee, #dddddd);
-    color: black;
+    color: white;
     align-self: flex-start;
     border-bottom-left-radius: 2px;
 }
@@ -221,19 +221,102 @@ h2 {
         transform: translate(-50%, -50%);
     }
 }
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        #chatbox { width: 80%; max-width: 500px; margin: auto; border: 1px solid paleturquoise; padding: 20px; }
-        #messages { height: 300px; overflow-y: auto; margin-bottom: 10px; border: 1px solid paleturquoise; padding: 10px; }
-        input, button { padding: 10px; margin: 5px; width: 80%; }
-        .chat-gif {
-            display: block; /* Show the GIF initially */
-            width: 250px; /* Adjust the size as needed */
-            margin: auto;
-            height:250px;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-        }
+body { 
+    font-family: 'Poppins', sans-serif; 
+    text-align: center; 
+    margin-top: 50px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    animation: backgroundAnimation 8s infinite alternate ease-in-out;
+}
+
+/* Background Animation */
+@keyframes backgroundAnimation {
+    0% { background: linear-gradient(135deg, #1e3c72, #2a5298); }
+    100% { background: linear-gradient(135deg, #4a148c, #2a5298); }
+}
+
+/* Chatbox Container */
+#chatbox {
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+    border: 2px solid paleturquoise;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Messages Area */
+#messages {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border: 2px solid paleturquoise;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input & Button */
+input, button { 
+    padding: 10px; 
+    margin: 5px; 
+    width: 80%; 
+    border-radius: 25px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #66bb6a, #388e3c);
+}
+
+/* Button Click Effect */
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animated Chatbot GIF */
+.chat-gif {
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    animation: bounce 3s infinite ease-in-out;
+}
+
+/* GIF Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Fade Out Effect When Hidden */
+.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
         
         .hidden {
             opacity: 0;
