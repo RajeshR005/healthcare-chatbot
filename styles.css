@@ -341,5 +341,47 @@ button:active {
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
+
+        /* RESPONSIVE DESIGN (MOBILE VIEW) */
+@media (max-width: 768px) {
+    #chatbox {
+       
+        padding: 15px;
+    }
+
+    input, button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 25px;
+        width: 100%;
+        
+        margin-left: 20px;
+        margin-top: 0px;
+    }
+
+    .chat-gif {
+        width: 250px;
+        height: 250px;
+    }
+    
+        #userInput {
+            width: 80%; /* Adjust the width for better spacing */
+            display: block;
+            margin: 10px auto; /* Centers both horizontally */
+            text-align: center;
+        }
+        #sendButton {
+            width: 50%; /* Adjust the width for better spacing */
+            display: block;
+            margin: 10px auto; /* Centers both horizontally */
+            text-align: center;
+        }
+    
+    
+}
+
         
   
