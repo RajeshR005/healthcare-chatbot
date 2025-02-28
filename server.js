@@ -16,12 +16,15 @@ app.post("/chat", async (req, res) => {
     }
 
     try {
-        const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
-            { 
-                contents: [{ parts: [{ text: userMessage }] }] 
-            }
-        );
+        const MODEL_NAME = "models/gemini-1.5-pro"; // Updated to correct model name
+
+const response = await axios.post(
+    `https://generativelanguage.googleapis.com/v1/${MODEL_NAME}:generateContent?key=${GEMINI_API_KEY}`,
+    { 
+        contents: [{ parts: [{ text: userMessage }] }] 
+    }
+);
+
 
         console.log("Full API Response:", JSON.stringify(response.data, null, 2));  // Debugging
 
