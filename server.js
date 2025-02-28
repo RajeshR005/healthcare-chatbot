@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(cors());
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
 app.post("/chat", async (req, res) => {
     const userMessage = req.body.message;
 
@@ -24,15 +23,22 @@ app.post("/chat", async (req, res) => {
             }
         );
 
-        console.log("Full API Response:", response.data);  // Debugging
+        console.log("Full API Response:", JSON.stringify(response.data, null, 2));  // Debugging
 
-        const botReply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that request.";
+        // **Fix: Correctly parse AI response**
+        let botReply = "I'm not sure how to respond to that.";
+        if (response.data && response.data.candidates && response.data.candidates.length > 0) {
+            botReply = response.data.candidates[0].content.parts[0].text;
+        }
+
         res.json({ reply: botReply });
+
     } catch (error) {
         console.error("Error fetching AI response:", error.response?.data || error.message);
         res.status(500).json({ error: "Failed to get a response from AI." });
     }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
