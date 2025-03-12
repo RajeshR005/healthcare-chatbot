@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "pneumonia", "hepatitis", "liver", "digestive", "colon", "gastric", "ulcer", "hernia", "muscles", "tendons",
         "ligaments", "radiology", "X-ray", "CT scan", "MRI", "blood test", "biopsy", "pharmacology", "antibiotics",
         "antiseptic", "immune system", "toxins", "dehydration", "first aid", "burns", "fracture", "sprain", "wound", 
-        "bandage", "CPR", "defibrillator", "cataract", "glaucoma", "diarrhea", "constipation", "appendix", "tonsils","sick","hi","hello"
+        "bandage", "CPR", "defibrillator", "cataract", "glaucoma", "diarrhea", "constipation", "appendix", "tonsils", 
+        "sick", "hi", "hello"
     ];
 
     // ✅ Booking Keywords
@@ -62,7 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         hideGif();
 
+        // Add user message to chat
         messages.innerHTML += `<p><b>You:</b> ${userText}</p>`;
+        messages.innerHTML += `<p id="loadingMessage" style="color: grey;">Healthcare AI Assistant is typing...</p>`; // Loading indicator
         userInput.value = "";
         messages.scrollTop = messages.scrollHeight;
 
@@ -79,24 +82,33 @@ document.addEventListener("DOMContentLoaded", function () {
         // ✅ Check if the question is healthcare-related
         if (!isHealthcareQuestion(userText)) {
             messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> I'm here to assist with healthcare-related queries. Please ask a question related to health, wellness, or medicine.</p>`;
+            document.getElementById("loadingMessage").remove(); // Remove loading message
             isProcessing = false;
             return;
         }
 
         try {
-            const response = await fetch("https://healthcare-chatbot-69ix.onrender.com/chat", {
+            const response = await fetch("http://localhost:5000/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userText })
             });
 
             const data = await response.json();
-            messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> ${data.reply}</p>`;
+            document.getElementById("loadingMessage").remove(); // Remove loading message
+
+            if (data.reply) {
+                messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> ${data.reply}</p>`;
+            } else {
+                messages.innerHTML += `<p style="color: red;"><b>Healthcare AI Assistant:</b> Error: No response received.</p>`;
+            }
         } catch (error) {
+            document.getElementById("loadingMessage").remove(); // Remove loading message
             messages.innerHTML += `<p style="color: red;"><b>Healthcare AI Assistant:</b> Error fetching response.</p>`;
         }
 
         isProcessing = false;
+        messages.scrollTop = messages.scrollHeight; // Auto-scroll to latest message
     }
 
     sendButton.addEventListener("click", sendMessage);
