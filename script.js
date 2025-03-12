@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ✅ 100+ Healthcare Keywords
+    // ✅ Healthcare Keywords
     const healthcareKeywords = [
         "health", "doctor", "medicine", "symptoms", "diagnosis", "treatment", "hospital", "nurse", "therapy", 
         "infection", "mental health", "fever", "pain", "cough", "cancer", "diabetes", "cardiology", "dentist",
@@ -35,10 +35,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "bandage", "CPR", "defibrillator", "cataract", "glaucoma", "diarrhea", "constipation", "appendix", "tonsils","sick","hi","hello"
     ];
 
+    // ✅ Booking Keywords
+    const bookingKeywords = ["booking", "appointment", "schedule", "reservation"];
+
     // ✅ Function to check if a question is healthcare-related
     function isHealthcareQuestion(question) {
         question = question.toLowerCase();
         return healthcareKeywords.some(keyword => question.includes(keyword));
+    }
+
+    // ✅ Function to check if booking-related keywords exist
+    function isBookingQuestion(question) {
+        question = question.toLowerCase();
+        return bookingKeywords.some(keyword => question.includes(keyword));
     }
 
     async function sendMessage() {
@@ -57,6 +66,16 @@ document.addEventListener("DOMContentLoaded", function () {
         userInput.value = "";
         messages.scrollTop = messages.scrollHeight;
 
+        // ✅ Check if it's a booking-related question and redirect
+        if (isBookingQuestion(userText)) {
+            messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> Redirecting you to our booking page... <a href="https://prince-hospital.dayschedule.com/" target="_blank">Click here</a> to schedule an appointment.</p>`;
+            isProcessing = false;
+            setTimeout(() => {
+                window.location.href = "https://prince-hospital.dayschedule.com/";
+            }, 2000); // Redirect after 2 seconds
+            return;
+        }
+
         // ✅ Check if the question is healthcare-related
         if (!isHealthcareQuestion(userText)) {
             messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> I'm here to assist with healthcare-related queries. Please ask a question related to health, wellness, or medicine.</p>`;
@@ -65,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch("https://healthcare-chatbot-69ix.onrender.com/chat", {
+            const response = await fetch("http://localhost:5000/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userText })
