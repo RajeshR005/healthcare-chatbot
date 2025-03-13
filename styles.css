@@ -2,17 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 /* Full Page Styling */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    animation: gradientAnimation 10s ease infinite alternate;
-}
+
 
 /* Animated Gradient Background */
 @keyframes gradientAnimation {
@@ -281,6 +271,7 @@ body {
     margin-bottom: 15px;
     border: 2px solid paleturquoise;
     padding: 10px;
+    
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     color: white;
@@ -333,8 +324,8 @@ button:active {
 /* Animated Chatbot GIF */
 .chat-gif {
     display: block;
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
     margin: auto;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
@@ -414,6 +405,19 @@ button:active {
     
     
 }
+/* YouTube Video Background */
+/* Full-Screen Background Video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
 
         
   
