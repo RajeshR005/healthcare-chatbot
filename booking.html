@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #6B46C1, #4C51BF);
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .confirmation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Checkmark Animation */
+        .checkmark-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            color: #4CAF50;
+            stroke-width: 4;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(76, 175, 80, 0.4);
+            border-radius: 50%;
+            filter: blur(10px);
+            animation: glowAnimation 1.5s infinite ease-in-out;
+        }
+
+        /* Text Animations */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-top: 15px;
+            animation: slideInDown 0.6s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-top: 10px;
+            animation: slideInUp 0.6s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        /* Button */
+        .confirm-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #4C51BF;
+            background-color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out 0.7s forwards;
+        }
+
+        .confirm-btn:hover {
+            background-color: #D6BCFA;
+            transform: scale(1.1);
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glowAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes drawCheck {
+            0% {
+                stroke-dasharray: 50;
+                stroke-dashoffset: 50;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <div class="checkmark-wrapper">
+            <svg class="checkmark" viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="25" fill="none" stroke="currentColor"></circle>
+                <path d="M14 27l7 7 16-16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path>
+            </svg>
+            <div class="glow-effect"></div>
+        </div>
+
+        <h1>Booking Confirmed!</h1>
+        <p>Thank you for booking with us. You will receive a confirmation email shortly.</p>
+
+        <button class="confirm-btn" onclick="window.location.href='index.html'">
+            Back to Virtual Assistant
+        </button>
+    </div>
+
+    <script>
+        // Animate the checkmark stroke
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkPath = document.querySelector(".checkmark path");
+            checkPath.style.strokeDasharray = "50";
+            checkPath.style.strokeDashoffset = "50";
+            checkPath.style.animation = "drawCheck 0.5s ease-out forwards 0.8s";
+        });
+    </script>
+<video id="bg-video" autoplay muted loop>
+    <source src="images/bg-ani.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+</body>
+</html>
