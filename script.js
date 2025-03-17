@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
             messages.innerHTML += `<p><b>Healthcare AI Assistant:</b> Redirecting you to our booking page... <a href="https://prince-hospital.dayschedule.com/" target="_blank">Click here</a> to schedule an appointment.</p>`;
             isProcessing = false;
             setTimeout(() => {
-                window.location.href = "https://prince-hospital.dayschedule.com/";
+                window.location.href = "booking.html";
             }, 2000); // Redirect after 2 seconds
             return;
         }
