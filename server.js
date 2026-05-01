@@ -11,7 +11,7 @@ app.use(cors());
 const COHERE_API_KEY = process.env.COHERE_API_KEY || "your_new_cohere_api_key";
 
 // ✅ Use a supported model
-const COHERE_MODEL = "command-r-plus"; // Change model if needed
+const COHERE_MODEL = "command-a-03-2025"; // Change model if needed
 
 app.post("/chat", async (req, res) => {
     const userMessage = req.body.message;
@@ -22,11 +22,10 @@ app.post("/chat", async (req, res) => {
 
     try {
         const response = await axios.post(
-            "https://api.cohere.com/v1/generate", // Cohere's text generation API
+            "https://api.cohere.com/v1/chat", // Cohere's chat API
             {
-                model: COHERE_MODEL, 
-                prompt: userMessage,
-                max_tokens: 150, // Adjust if needed
+                model: COHERE_MODEL,
+                message: userMessage,
                 temperature: 0.7, // Adjust for randomness
             },
             {
@@ -39,7 +38,7 @@ app.post("/chat", async (req, res) => {
 
         console.log("Full API Response:", JSON.stringify(response.data, null, 2)); // Debugging
 
-        let botReply = response.data.generations?.[0]?.text || "I'm not sure how to respond to that.";
+        let botReply = response.data.text || "I'm not sure how to respond to that.";
 
         res.json({ reply: botReply });
 
@@ -50,5 +49,5 @@ app.post("/chat", async (req, res) => {
 });
 
 // Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
